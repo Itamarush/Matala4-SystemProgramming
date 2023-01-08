@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define INF 999999
 #ifndef GRAPH_
 #define GRAPH_
 
@@ -13,9 +14,14 @@ typedef struct edge_ {
 
 
 typedef struct GRAPH_NODE_ {
+        // i use it for the dijkstra algo
+    int data = INF;
+    int Visited = 0;
+
     int node_num;
     pedge edges;
     struct GRAPH_NODE_ *next;
+
 } node, *pnode;
 
 void build_graph_cmd(pnode *head);

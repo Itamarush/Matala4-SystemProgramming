@@ -7,8 +7,9 @@ int main()
 
     pnode head = NULL;
     char c;
+    int stay = 1;
 
-    while (EOF != c)
+    while (EOF != c && stay == 1)
     {
         c = getchar();
 
@@ -44,7 +45,7 @@ int main()
         }
         else if (c != ' ')
         {
-            // quit
+            stay = 0;
             break;
         }
     }

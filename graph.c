@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "graph.h"
-#define INF 999999
 
 void build_graph_cmd(pnode *head)
 {
@@ -78,8 +75,8 @@ void insert_node_cmd(pnode *head)
 
 pnode findNode(pnode head, int nameOfNode)
 {
-    pnode before = curr;
     pnode curr = head;
+    pnode before = curr;
     do
     {      
         if(curr == NULL)
@@ -89,21 +86,34 @@ pnode findNode(pnode head, int nameOfNode)
 
         if (curr->node_num = nameOfNode)
         {
-            return curr;
+            return before;
         }
         before = curr;
         curr = curr->next;
+        
     }
-    while(head->next != NULL);  
+    while(curr->next != NULL);  
+    printf("didnt find");
     return NULL; 
 }
 
-void delete_node_cmd(&head)
+void delete_node_cmd(pnode *head)
 {
     int nameOfNode;
     scanf("%d", &nameOfNode);
 
-    findNode(head, nameOfNode)
+    pnode needToBeDeleted = findNode(head, nameOfNode);
+
+    if (needToBeDeleted == *head)
+    {
+        *head = needToBeDeleted->next;
+    }
+    else
+    {
+        needToBeDeleted->next = needToBeDeleted->next->next;
+    }
 }
+
+void shortsPath_cmd(pnode head);
 
 
