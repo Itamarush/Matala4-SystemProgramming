@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "graph.h"
+#define INF 999999
 
 void build_graph_cmd(pnode *head)
 {
@@ -12,13 +14,25 @@ void build_graph_cmd(pnode *head)
 
     // gets the amount of nodes from the user
     int amountOfNodes;
-    scanf("d", &amountOfNodes);
+    scanf("%d", &amountOfNodes);
 
     // gets the nodes numbers and its edges
-    char ch;
-    while (1)
+    int counter = 0;
+    while (counter < amountOfNodes)
     {
-        ch = getchar();
+
+        pnode new_node = (pnode)malloc(sizeof(node));
+
+        pedge new_edge = malloc(2 * sizeof(edge)); 
+        new_edge[counter].endpoint = NULL;
+        new_edge[counter].weight = INF;
+        new_edge[counter].next = new_edge + 1;
+        counter++;
+        new_edge[counter].endpoint = NULL;
+        new_edge[counter].weight = INF;
+        new_edge[counter].next = NULL;
+        new_node->edges = new_edge;
+        new_node->next = NULL;
     }
 }
 
@@ -26,7 +40,7 @@ void insert_node_cmd(pnode *head)
 {
     int stay = 1;
     char newChar;
-    int nameOfNode, toWhichNode, weightOfEdge; 
+    int nameOfNode, toWhichNode1, weightOfEdge1, toWhichNode2, weightOfEdge2; 
     while (stay)
     {
         scanf("%c", &newChar);
@@ -39,43 +53,57 @@ void insert_node_cmd(pnode *head)
 
             while (stay)
             {
-                int returnValue = scanf("%d%d", toWhichNode, weightOfEdge);
+                int returnValue = scanf("%d,%d,%d,%d", &toWhichNode1, &weightOfEdge1, &toWhichNode2, &weightOfEdge2);
                 if(returnValue < 2)
                 {
                     stay = 0;
                     break;
                 }
                 pedge new_edge = malloc(2*sizeof(edge));
-                new_edge[counter].endpoint = toWhichNode;
-                new_edge[counter].weight = weightOfEdge;
+                new_edge[counter].endpoint = toWhichNode1;
+                new_edge[counter].weight = weightOfEdge1;
                 new_edge[counter].next = new_edge + 1;
+                counter++;
+                new_edge[counter].endpoint = (pnode)toWhichNode2;
+                new_edge[counter].weight = weightOfEdge2;
+                new_edge[counter].next = NULL;
                 new_node->edges = new_edge;
-            }
-            
+
+                new_node->next = NULL;
+                stay = 0;
+            }   
         }
-        
     }   
 }
 
-pnode create_node(int node_num, pnode to1, int edge1_w, pnode to2, int edge2_w)
+pnode findNode(pnode head, int nameOfNode)
 {
-    pnode new_node = (pnode)malloc(sizeof(node));
-    new_node->node_num = node_num;
+    pnode before = curr;
+    pnode curr = head;
+    do
+    {      
+        if(curr == NULL)
+        {
+            return 0;
+        }
 
-    pedge pedges = malloc(2 * sizeof(edge)); // allocate space for 2 edges
-    pedges[0].endpoint = to1;                // set the first edge
-    pedges[0].weight = edge1_w;
-    pedges[0].next = pedges + 1;
-    pedges[1].endpoint = to2; // set the second edge
-    pedges[1].weight = edge2_w;
-    pedges[1].next = NULL;
-    new_node->edges = pedges;
+        if (curr->node_num = nameOfNode)
+        {
+            return curr;
+        }
+        before = curr;
+        curr = curr->next;
+    }
+    while(head->next != NULL);  
+    return NULL; 
+}
 
-    new_node->next = NULL;
+void delete_node_cmd(&head)
+{
+    int nameOfNode;
+    scanf("%d", &nameOfNode);
 
-    new_node->d = -1; // used for dijkstra
-    new_node->isVisited = -1;
+    findNode(head, nameOfNode)
+}
 
-    return new_node;
-};
 

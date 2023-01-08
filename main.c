@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "graph.h"
+// #include "graph.c"
 
-int main(void)
+int main()
 {
 
     pnode head = NULL;
