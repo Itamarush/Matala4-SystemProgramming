@@ -1,5 +1,6 @@
 #include "graph.h"
 
+
 void build_graph_cmd(pnode *head)
 {
     int amountOfNodes;
@@ -37,86 +38,6 @@ void build_graph_cmd(pnode *head)
         }
     }
     return head;
-}
-
-void insert_node_cmd(pnode *head)
-{
-    int stay = 1;
-    int nameOfNode, toWhichNode, weightOfEdge; 
-    pnode theNode = 0;
-
-    while (stay)
-    {
-        {   
-            scanf("%d", nameOfNode);
-            theNode = findNode(head, nameOfNode);
-            while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0)
-            {
-                if (isdigit(toWhichNode) && isdigit(weightOfEdge))
-                {
-                    addEdge(head, theNode, toWhichNode, weightOfEdge);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-    }   
-}
-
-pnode findNode(pnode head, int nameOfNode)
-{
-    pnode curr = head;
-    pnode before = curr;
-    
-    while (curr != 0)
-    {      
-        if (curr->node_num = nameOfNode)
-        {
-            return curr;
-        }
-        curr = curr->next;
-    }
-    printf("didnt find");
-    return NULL; 
-}
-
-pnode findNodeBefore(pnode head, int nameOfNode)
-{
-    pnode curr = head;
-    pnode before = curr;
-    
-    while (curr != 0)
-    {      
-        if (curr->node_num = nameOfNode)
-        {
-            return before;
-        }
-        before = curr;
-        curr = curr->next;
-    }
-    printf("didnt find");
-    return NULL; 
-}
-
-void delete_node_cmd(pnode *head)
-{
-    int nameOfNode;
-    scanf("%d", &nameOfNode);
-
-    pnode needToBeDeleted = findNode(head, nameOfNode);
-    pnode oneBefore = findNodeBefore(head, nameOfNode);
-
-    if (needToBeDeleted == *head)
-    {
-        *head = needToBeDeleted->next;
-    }
-    else
-    {
-        
-        oneBefore->next = needToBeDeleted->next;
-    }
 }
 
 void deleteGraph_cmd(pnode* head)

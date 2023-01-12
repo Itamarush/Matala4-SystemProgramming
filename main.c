@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "graph.h"
-// #include "graph.c"
 
 int main()
 {
@@ -17,17 +15,22 @@ int main()
         {
             deleteGraph_cmd(&head);
             build_graph_cmd(&head);
-            scanf("%c", &newChar);
+            while (scanf("%c", &newChar) != 0)
+            {               
             if (newChar == 'n')
-            {
-                insert_node_cmd(&head);
+                {
+                    insert_node_cmd(&head);
+                }
+            else
+                {
+                    break;
+                } 
             }
-            
+           
         }
         else if (c == 'B')
         {
-            // add new node to graph
-            insert_node_cmd(&head);
+            insert_new_node_cmd(&head);
         }
         else if (c == 'D')
         {

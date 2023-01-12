@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "edges.c"
-#include "graph.c"
-#include "algo.c"
-#include "nodes.c"
 
 #define INF 999999
 #ifndef GRAPH_
@@ -37,5 +33,13 @@ void printGraph_cmd(pnode head); //for self debug
 void deleteGraph_cmd(pnode* head);
 void shortsPath_cmd(pnode head);
 void TSP_cmd(pnode head);
+void add_edge(pnode *head, pnode newEdgeNode);
+pedge lastEdge(pedge edge);
+void insert_new_node_cmd(pnode *head);
+pnode findNode(pnode head, int nameOfNode);
+pnode findNodeBefore(pnode head, int nameOfNode);
+void freeAllEdges(pnode tmpNode);
+void dijkstra(pnode start, pnode head);
+pnode minNodeData(pnode curr);
 
 #endif
