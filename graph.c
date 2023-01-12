@@ -37,12 +37,11 @@ void build_graph_cmd(pnode *head)
             i++;
         }
     }
-    return head;
 }
 
 void deleteGraph_cmd(pnode* head)
 {
-    pnode currNode = head;
+    pnode currNode = *head;
     pnode tempNode;
     pedge currEdges;
     pedge tempEdges;

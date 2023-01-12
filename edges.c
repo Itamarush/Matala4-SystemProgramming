@@ -3,20 +3,20 @@
 void add_edge(pnode *head, pnode newEdgeNode)
 {
     int toWhichNode, weightOfEdge;
-    
+
     while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0 &&
     (isdigit(toWhichNode) && isdigit(weightOfEdge)))
     {
-        if (newEdgeNode->edges = 0 && stay)
+        if (newEdgeNode->edges = 0)
         {
-            newEdgeNode->edges = (pnode)malloc(sizeof(node));
+            newEdgeNode->edges = (pedge)malloc(sizeof(edge));
             if (newEdgeNode->edges == 0)
             {
                 printf("error while trying to malloc"); 
             }
             newEdgeNode->edges->next = 0;
             newEdgeNode->edges->weight = weightOfEdge;
-            newEdgeNode->edges->endpoint = findNode(head, toWhichNode);
+            newEdgeNode->edges->endpoint = findNode(*head, toWhichNode);
         }
         else
         {
@@ -29,7 +29,7 @@ void add_edge(pnode *head, pnode newEdgeNode)
             }
             newEdges = newEdges->next;
             newEdges->weight = weightOfEdge;
-            newEdges->endpoint = findNode(head, toWhichNode);
+            newEdges->endpoint = findNode(*head, toWhichNode);
             newEdges->next = NULL;
         }
     }
@@ -39,7 +39,7 @@ pedge lastEdge(pedge edge)
 {   
     pedge before;
 
-    while (edge =! 0)
+    while (edge != 0)
     {
         before = edge;
         edge = edge->next;

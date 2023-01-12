@@ -1,11 +1,20 @@
-# graph.o: graph.c
-# 	gcc -o graph.o graph.c
+edges.o: edges.c
+	gcc -c edges.o edges.c
 
-# main.o: main.c
-# 	gcc -c main.o main.c 
+algo.o: algo.c
+	gcc -c algo.o algo.c
+
+nodes.o: nodes.c
+	gcc -c nodes.o nodes.c
+
+graph.o: graph.c
+	gcc -c graph.o graph.c
+
+main.o: main.c
+	gcc -c main.o main.c 
 
 graphk: main.o graph.o
-	gcc -o graph main.o graph.o graph.h
+	gcc -o graph main.o graph.o graph.h nodes.o algo.c edges.c
 
 all: graphk
 

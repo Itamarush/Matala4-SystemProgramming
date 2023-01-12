@@ -53,9 +53,14 @@ pnode minNodeData(pnode curr)
         {
             if (edge->endpoint->data < min->data)
             {
-                min = edge->endpoint->data;
+                min = edge->endpoint;
                 edge->next;
             }
         }
         return min;
     }
+
+void TSP_cmd(pnode head)
+{
+    printf("ok tsp");
+}

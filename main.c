@@ -1,5 +1,5 @@
 #include "graph.h"
-
+void insert_new_node_cmd(pnode *head);
 int main()
 {
 
@@ -34,7 +34,6 @@ int main()
         }
         else if (c == 'D')
         {
-            // delete node from graph
             delete_node_cmd(&head);
         }
         else if (c == 'S')
@@ -47,11 +46,7 @@ int main()
             // travelling salesman problem
             TSP_cmd(head);
         }
-        else if (c == 'P')
-        {
-            // print graph
-            printGraph_cmd(head);
-        }
+
         else if (c != ' ')
         {
             stay = 0;
