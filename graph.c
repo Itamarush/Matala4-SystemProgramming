@@ -42,23 +42,25 @@ void build_graph_cmd(pnode *head)
 void insert_node_cmd(pnode *head)
 {
     int stay = 1;
-    char newChar;
     int nameOfNode, toWhichNode, weightOfEdge; 
+    pnode theNode = 0;
+
     while (stay)
     {
-        scanf("%c", &newChar);
-        if (newChar == 'n')
         {   
             scanf("%d", nameOfNode);
+            theNode = findNode(head, nameOfNode);
             while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0)
             {
                 if (isdigit(toWhichNode) && isdigit(weightOfEdge))
                 {
-                    
+                    addEdge(head, theNode, toWhichNode, weightOfEdge);
                 }
-                
+                else
+                {
+                    break;
+                }
             }
-            
         }
     }   
 }

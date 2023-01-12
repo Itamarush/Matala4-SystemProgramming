@@ -6,7 +6,7 @@ int main()
 {
 
     pnode head = NULL;
-    char c;
+    char c, newChar;
     int stay = 1;
 
     while (EOF != c && stay == 1)
@@ -17,7 +17,12 @@ int main()
         {
             deleteGraph_cmd(&head);
             build_graph_cmd(&head);
-            insert_node_cmd(&head);
+            scanf("%c", &newChar);
+            if (newChar == 'n')
+            {
+                insert_node_cmd(&head);
+            }
+            
         }
         else if (c == 'B')
         {
