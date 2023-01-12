@@ -6,7 +6,7 @@ void insert_new_node_cmd(pnode *head)
     int nameOfNode, toWhichNode, weightOfEdge; 
     pnode theNode = 0;
     scanf("%d", &nameOfNode);
-    theNode = findNode(head, nameOfNode);
+    theNode = findNode(*head, nameOfNode);
 
     if(theNode == 0)
     {
@@ -27,8 +27,8 @@ void insert_node_cmd(pnode *head)
     int nameOfNode, toWhichNode, weightOfEdge; 
     pnode theNode = 0;
  
-    scanf("%d", nameOfNode);
-    theNode = findNode(head, nameOfNode);
+    scanf("%d", &nameOfNode);
+    theNode = findNode(*head, nameOfNode);
     addEdge(head, theNode);
 }
 
@@ -72,9 +72,9 @@ void delete_node_cmd(pnode *head)
     int nameOfNode;
     scanf("%d", &nameOfNode);
 
-    pnode curr = head;
-    pnode needToBeDeleted = findNode(head, nameOfNode);
-    pnode oneBefore = findNodeBefore(head, nameOfNode);
+    pnode curr = *head;
+    pnode needToBeDeleted = findNode(*head, nameOfNode);
+    pnode oneBefore = findNodeBefore(*head, nameOfNode);
     pedge currEdge = curr->edges;
     pedge tempEdge = 0;
 
@@ -87,7 +87,7 @@ void delete_node_cmd(pnode *head)
         
         while (currEdge != 0)
         {
-            if (currEdge->endpoint = nameOfNode)
+            if (currEdge->endpoint = needToBeDeleted)
             {
                 tempEdge = currEdge;
                 currEdge = currEdge->next;

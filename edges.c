@@ -1,6 +1,6 @@
 #include "graph.h"
 
-void add_edge(pnode *head, pnode newEdgeNode)
+void addEdge(pnode *head, pnode newEdgeNode)
 {
     int toWhichNode, weightOfEdge;
 
