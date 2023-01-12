@@ -15,8 +15,9 @@ int main()
 
         if (c == 'A')
         {
-            // create graph
+            deleteGraph_cmd(&head);
             build_graph_cmd(&head);
+            insert_node_cmd(&head);
         }
         else if (c == 'B')
         {

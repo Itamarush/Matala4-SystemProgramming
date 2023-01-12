@@ -2,73 +2,63 @@
 
 void build_graph_cmd(pnode *head)
 {
-    // it means that a graph is already exists and we wanna delete the old one
-
-    if (*head != NULL)
-    {
-        void deleteGraph_cmd(pnode* head);
-    }
-
-    // gets the amount of nodes from the user
     int amountOfNodes;
     scanf("%d", &amountOfNodes);
 
-    // gets the nodes numbers and its edges
     int counter = 0;
     while (counter < amountOfNodes)
     {
 
         pnode new_node = (pnode)malloc(sizeof(node));
+        if (new_node == 0)
+        {
+            printf("error while trying to malloc"); 
+        }
 
-        pedge new_edge = malloc(2 * sizeof(edge)); 
-        new_edge[counter].endpoint = NULL;
-        new_edge[counter].weight = INF;
-        new_edge[counter].next = new_edge + 1;
-        counter++;
-        new_edge[counter].endpoint = NULL;
-        new_edge[counter].weight = INF;
-        new_edge[counter].next = NULL;
-        new_node->edges = new_edge;
-        new_node->next = NULL;
+        node *head = 0;
+        head->node_num = 0;
+        head->edges = 0;
+        head->next = 0;
+
+        pnode mallocNode = 0;
+        pnode tempNode;
+        size_t i = 0;
+        while (i < amountOfNodes)
+        {
+            mallocNode = (pnode)malloc(sizeof(node));
+            if (mallocNode == 0)
+            {
+                printf("error while trying to malloc"); 
+            }
+            new_node->node_num = i;
+            tempNode->next = new_node;
+            tempNode = tempNode->next;
+            i++;
+        }
     }
+    return head;
 }
 
 void insert_node_cmd(pnode *head)
 {
     int stay = 1;
     char newChar;
-    int nameOfNode, toWhichNode1, weightOfEdge1, toWhichNode2, weightOfEdge2; 
+    int nameOfNode, toWhichNode, weightOfEdge; 
     while (stay)
     {
         scanf("%c", &newChar);
         if (newChar == 'n')
         {   
-            int counter = 0;
-            scanf("%d", &nameOfNode);
-            pnode new_node = (pnode)malloc(sizeof(node));
-            new_node->node_num = nameOfNode;
-
-            while (stay)
+            scanf("%d", nameOfNode);
+            while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0)
             {
-                int returnValue = scanf("%d,%d,%d,%d", &toWhichNode1, &weightOfEdge1, &toWhichNode2, &weightOfEdge2);
-                if(returnValue < 2)
+                if (isdigit(toWhichNode) && isdigit(weightOfEdge))
                 {
-                    stay = 0;
-                    break;
+                    
                 }
-                pedge new_edge = malloc(2*sizeof(edge));
-                new_edge[counter].endpoint = toWhichNode1;
-                new_edge[counter].weight = weightOfEdge1;
-                new_edge[counter].next = new_edge + 1;
-                counter++;
-                new_edge[counter].endpoint = (pnode)toWhichNode2;
-                new_edge[counter].weight = weightOfEdge2;
-                new_edge[counter].next = NULL;
-                new_node->edges = new_edge;
-
-                new_node->next = NULL;
-                stay = 0;
-            }   
+                
+            }
+            
         }
     }   
 }
@@ -77,22 +67,33 @@ pnode findNode(pnode head, int nameOfNode)
 {
     pnode curr = head;
     pnode before = curr;
-    do
+    
+    while (curr != 0)
     {      
-        if(curr == NULL)
+        if (curr->node_num = nameOfNode)
         {
-            return 0;
+            return curr;
         }
+        curr = curr->next;
+    }
+    printf("didnt find");
+    return NULL; 
+}
 
+pnode findNodeBefore(pnode head, int nameOfNode)
+{
+    pnode curr = head;
+    pnode before = curr;
+    
+    while (curr != 0)
+    {      
         if (curr->node_num = nameOfNode)
         {
             return before;
         }
         before = curr;
         curr = curr->next;
-        
     }
-    while(curr->next != NULL);  
     printf("didnt find");
     return NULL; 
 }
@@ -103,6 +104,7 @@ void delete_node_cmd(pnode *head)
     scanf("%d", &nameOfNode);
 
     pnode needToBeDeleted = findNode(head, nameOfNode);
+    pnode oneBefore = findNodeBefore(head, nameOfNode);
 
     if (needToBeDeleted == *head)
     {
@@ -110,10 +112,30 @@ void delete_node_cmd(pnode *head)
     }
     else
     {
-        needToBeDeleted->next = needToBeDeleted->next->next;
+        
+        oneBefore->next = needToBeDeleted->next;
     }
 }
 
-void shortsPath_cmd(pnode head);
+void deleteGraph_cmd(pnode* head)
+{
+    pnode currNode = head;
+    pnode tempNode;
+    pedge currEdges;
+    pedge tempEdges;
 
+    while (currNode != NULL )
+    {
+        currEdges = currNode->edges;
+        while (currEdges != NULL)
+        {
+            tempEdges = currEdges;
+            currEdges = currEdges->next;
+            free(tempEdges);
+        }
+        tempNode = currNode;
+        currNode = currNode->next;
+        free(tempNode);
+    }
+}
 
