@@ -29,17 +29,17 @@ void insert_node_cmd(pnode *head)
  
     scanf("%d", &nameOfNode);
     theNode = findNode(*head, nameOfNode);
-    addEdge(head, theNode);
+    addEdge(*head, theNode);
 }
 
-pnode findNode(pnode head, int nameOfNode)
+pnode findNode(pnode *head, int nameOfNode)
 {
     pnode curr = head;
     pnode before = curr;
     
     while (curr != 0)
     {      
-        if (curr->node_num = nameOfNode)
+        if (curr->node_num == nameOfNode)
         {
             return curr;
         }

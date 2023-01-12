@@ -37,7 +37,7 @@
 CC=gcc
 OBJ=nodes.o edges.o algo.o graph.o main.o graph.h
 NAME = main
-CFLAGS = -Wall -Werror -g
+CFLAGS = -Wall -g
 
 all : graph
 graph: $(OBJ)

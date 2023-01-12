@@ -2,8 +2,7 @@
 void insert_new_node_cmd(pnode *head);
 int main()
 {
-
-    pnode head = NULL;
+    pnode *head = 0;
     char c, newChar;
     int stay = 1;
 
@@ -15,6 +14,8 @@ int main()
         {
             deleteGraph_cmd(&head);
             build_graph_cmd(&head);
+            scanf("%c", &c);
+
             while (scanf("%c", &newChar) != 0)
             {               
             if (newChar == 'n')
@@ -38,6 +39,7 @@ int main()
         }
         else if (c == 'S')
         {
+            printf("aa");
             // shortest path
             shortsPath_cmd(head);
         }

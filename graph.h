@@ -36,7 +36,7 @@ void TSP_cmd(pnode head);
 void addEdge(pnode *head, pnode newEdgeNode);
 pedge lastEdge(pedge edge);
 void insert_new_node_cmd(pnode *head);
-pnode findNode(pnode head, int nameOfNode);
+pnode findNode(pnode *head, int nameOfNode);
 pnode findNodeBefore(pnode head, int nameOfNode);
 void freeAllEdges(pnode tmpNode);
 void dijkstra(pnode start, pnode head);

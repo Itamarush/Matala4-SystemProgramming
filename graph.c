@@ -1,42 +1,43 @@
 #include "graph.h"
 
 
-void build_graph_cmd(pnode *head)
-{
+void build_graph_cmd(pnode *header)
+{   
+    node *head = 0;
+    pnode tempNode , pointerToHead = 0;
+
     int amountOfNodes;
     scanf("%d", &amountOfNodes);
-
     int counter = 0;
-    while (counter < amountOfNodes)
-    {
 
-        pnode new_node = (pnode)malloc(sizeof(node));
-        if (new_node == 0)
+        head = (pnode)malloc(sizeof(node));
+        if (head == 0)
         {
             printf("error while trying to malloc"); 
         }
+        *header = head;
 
-        node *head = 0;
         head->node_num = 0;
         head->edges = 0;
         head->next = 0;
 
-        pnode mallocNode = 0;
-        pnode tempNode;
-        size_t i = 0;
+        pointerToHead = head;
+
+        size_t i = 1;
         while (i < amountOfNodes)
         {
-            mallocNode = (pnode)malloc(sizeof(node));
-            if (mallocNode == 0)
+            tempNode = (pnode)malloc(sizeof(node));
+            if (tempNode == 0)
             {
                 printf("error while trying to malloc"); 
             }
-            new_node->node_num = i;
-            tempNode->next = new_node;
-            tempNode = tempNode->next;
+            tempNode->node_num = i;
+            tempNode->next = 0;
+            tempNode->edges = 0;
+            pointerToHead->next = tempNode;
+            pointerToHead = pointerToHead->next;
             i++;
         }
-    }
 }
 
 void deleteGraph_cmd(pnode* head)
