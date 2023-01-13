@@ -33,7 +33,7 @@ void printGraph_cmd(pnode head); //for self debug
 void deleteGraph_cmd(pnode* head);
 void shortsPath_cmd(pnode head);
 void TSP_cmd(pnode head);
-void addEdge(pnode *head, pnode newEdgeNode);
+void addEdge(pnode head, pnode newEdgeNode);
 pedge lastEdge(pedge edge);
 void insert_new_node_cmd(pnode *head);
 pnode findNode(pnode *head, int nameOfNode);

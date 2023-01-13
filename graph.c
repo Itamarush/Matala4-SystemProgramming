@@ -3,8 +3,7 @@
 
 void build_graph_cmd(pnode *header)
 {   
-    node *head = 0;
-    pnode tempNode , pointerToHead = 0;
+    pnode head, tempNode , pointerToHead = 0;
 
     int amountOfNodes;
     scanf("%d", &amountOfNodes);
@@ -38,6 +37,7 @@ void build_graph_cmd(pnode *header)
             pointerToHead = pointerToHead->next;
             i++;
         }
+    // *header = &head;
 }
 
 void deleteGraph_cmd(pnode* head)

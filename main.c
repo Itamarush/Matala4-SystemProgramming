@@ -2,7 +2,8 @@
 void insert_new_node_cmd(pnode *head);
 int main()
 {
-    pnode *head = 0;
+    // pnode temp = NULL;
+    pnode head = 0;
     char c, newChar;
     int stay = 1;
 

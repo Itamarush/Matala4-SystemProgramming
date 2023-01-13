@@ -1,13 +1,13 @@
 #include "graph.h"
 
-void addEdge(pnode *head, pnode newEdgeNode)
+void addEdge(pnode head, pnode newEdgeNode)
 {
     int toWhichNode, weightOfEdge;
+    pnode *phead = head;
 
-    while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0 &&
-    (isdigit(toWhichNode) && isdigit(weightOfEdge)))
+    while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0 && !(isalpha(toWhichNode) && isalpha(weightOfEdge)))
     {
-        if (newEdgeNode->edges = 0)
+        if (newEdgeNode->edges == 0)
         {
             newEdgeNode->edges = (pedge)malloc(sizeof(edge));
             if (newEdgeNode->edges == 0)
@@ -16,12 +16,12 @@ void addEdge(pnode *head, pnode newEdgeNode)
             }
             newEdgeNode->edges->next = 0;
             newEdgeNode->edges->weight = weightOfEdge;
-            newEdgeNode->edges->endpoint = findNode(*head, toWhichNode);
+            newEdgeNode->edges->endpoint = findNode(phead, toWhichNode);
         }
         else
         {
             pedge newEdges = 0;
-            newEdges = lastEdge(newEdges);
+            newEdges = lastEdge(newEdgeNode->edges);
             newEdges->next = (pedge)malloc(sizeof(edge));
             if (newEdges->next == 0)
             {
@@ -29,7 +29,7 @@ void addEdge(pnode *head, pnode newEdgeNode)
             }
             newEdges = newEdges->next;
             newEdges->weight = weightOfEdge;
-            newEdges->endpoint = findNode(*head, toWhichNode);
+            newEdges->endpoint = findNode(phead, toWhichNode);
             newEdges->next = NULL;
         }
     }
@@ -41,10 +41,9 @@ pedge lastEdge(pedge edge)
 
     while (edge != 0)
     {
-        before = edge;
         edge = edge->next;
     }
-    return before;
+    return edge;
 }
 
 void freeAllEdges(pnode tmpNode)
