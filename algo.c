@@ -36,7 +36,7 @@ int dijkstra(pnode *head, pnode start, pnode end)
     curr = start;
     curr->data = 0;
 
-    while (curr != 0)
+    while (curr!= 0)
     {
         pedge edge = curr->edges;
         
@@ -48,7 +48,11 @@ int dijkstra(pnode *head, pnode start, pnode end)
             }
             edge = edge->next;
         }
-
+        if (curr->next == 0)
+        {
+            return end->data;
+        }
+        
         curr->Visited = 1;
         curr = minNodeData(curr);
     }

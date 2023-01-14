@@ -37,7 +37,7 @@ void addEdge(pnode *head, pnode newEdgeNode);
 pedge lastEdge(pedge edge);
 void insert_new_node_cmd(pnode *head);
 pnode findNode(pnode *head, int nameOfNode);
-pnode findNodeBefore(pnode head, int nameOfNode);
+pnode findNodeBefore(pnode *head, int nameOfNode);
 void freeAllEdges(pnode tmpNode);
 int dijkstra(pnode *head, pnode start, pnode end);
 pnode minNodeData(pnode curr);

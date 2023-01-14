@@ -50,9 +50,9 @@ pnode findNode(pnode *head, int nameOfNode)
     return NULL; 
 }
 
-pnode findNodeBefore(pnode head, int nameOfNode)
+pnode findNodeBefore(pnode *head, int nameOfNode)
 {
-    pnode curr = head;
+    pnode curr = *head;
     pnode before = curr;
     
     while (curr != 0)
@@ -64,7 +64,6 @@ pnode findNodeBefore(pnode head, int nameOfNode)
         before = curr;
         curr = curr->next;
     }
-    printf("didnt find");
     return NULL; 
 }
 
@@ -74,8 +73,8 @@ void delete_node_cmd(pnode *head)
     scanf("%d", &nameOfNode);
 
     pnode curr = *head;
-    pnode needToBeDeleted = findNode(*head, nameOfNode);
-    pnode oneBefore = findNodeBefore(*head, nameOfNode);
+    pnode needToBeDeleted = findNode(head, nameOfNode);
+    pnode oneBefore = findNodeBefore(head, nameOfNode);
     pedge currEdge = curr->edges;
     pedge tempEdge = 0;
 
@@ -86,14 +85,14 @@ void delete_node_cmd(pnode *head)
             curr= curr->next;
         }
         
-        while (currEdge != 0)
+        while (currEdge->next != 0)
         {
             if (currEdge->endpoint == needToBeDeleted)
             {
                 tempEdge = currEdge;
-                currEdge = currEdge->next;
                 free(tempEdge);
             }
+            currEdge = currEdge->next;
         }
         oneBefore->next = needToBeDeleted->next;
         free(needToBeDeleted);   
