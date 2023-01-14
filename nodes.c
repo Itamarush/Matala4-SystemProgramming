@@ -10,6 +10,7 @@ void insert_new_node_cmd(pnode *head)
 
     if(theNode == 0)
     {
+        theNode = (pnode)malloc(sizeof(node));
         addEdge(head, theNode);
     }
 
@@ -44,7 +45,6 @@ pnode findNode(pnode *head, int nameOfNode)
         }
         curr = curr->next;
     }
-    printf("didnt find");
     return NULL; 
 }
 

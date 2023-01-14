@@ -32,7 +32,7 @@ int main()
         {
             insert_new_node_cmd(&head);
         }
-        if (choise == 'D')
+         if (choise == 'D')
         {
             delete_node_cmd(&head);
         }
@@ -43,13 +43,13 @@ int main()
         if (choise == 'T')
         {
             TSP_cmd(&head);
+            printf("ok!!");
         }
-
-        if (choise != ' ')
+        if (choise == ' ')
         {
-            stay = 0;
             break;
         }
+        
     }
 
     deleteGraph_cmd(&head);

@@ -12,7 +12,11 @@ void shortsPath_cmd(pnode *head)
     {
         answer = dijkstra(&(*head), &(*start), &(*end));
     }
-
+    if (answer == INF)
+    {
+        printf("Dijsktra shortest path: -1 ");
+        return;
+    }
     printf("Dijsktra shortest path: %d ", answer);
 
 }
@@ -76,6 +80,7 @@ void TSP_cmd(pnode *head)
         scanf("%d", &arr[i]);
     }
     permutation(&(*head), arr, 0, length-1);
+    printf("ok");
 }
 
 void swap(int *x, int *y)

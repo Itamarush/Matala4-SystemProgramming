@@ -48,7 +48,7 @@ void freeAllEdges(pnode tmpNode)
     pedge deleteEdge = tmpNode->edges;
     pedge tempEdge = 0;
 
-    while (tmpNode != 0)
+    while (deleteEdge != 0)
     {
         tempEdge = deleteEdge;
         deleteEdge = deleteEdge->next;
