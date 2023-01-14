@@ -1,5 +1,5 @@
 #include "graph.h"
-int min = INF;
+int minimum = INF;
 
 void shortsPath_cmd(pnode *head)
 {
@@ -19,7 +19,7 @@ void shortsPath_cmd(pnode *head)
         return;
     }
     printf("Dijsktra shortest path: %d \n", answer);
-
+    answer = INF;
 }
 
 int dijkstra(pnode *head, pnode start, pnode end)
@@ -81,7 +81,17 @@ void TSP_cmd(pnode *head)
         scanf("%d", &arr[i]);
     }
     permutation(&(*head), arr, 0, length-1);
-    printf("TSP shortest path: %d \n", min);
+    if (minimum == INF)
+    {
+        printf("TSP shortest path: -1 \n");
+        minimum = INF;
+    }
+    else
+    {
+        printf("TSP shortest path: %d \n", minimum);
+        minimum = INF;
+    }
+
 }
 
 void swap(int *x, int *y)
@@ -98,9 +108,9 @@ void permutation(pnode *head, int *arr, int start, int end)
     {
         // printf("%d%d%d\n",arr[0],arr[1],[arr2]);
         value = tspUsingDijkstra(&(*head), arr, end);
-        if (min > value)
+        if (minimum > value)
         {
-            min = value;
+            minimum = value;
         }
         return;
     }

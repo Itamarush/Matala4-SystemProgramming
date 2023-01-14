@@ -11,7 +11,7 @@ void insert_new_node_cmd(pnode *head)
     if(theNode == 0)
     {
         theNode = (pnode)malloc(sizeof(node));
-        pnode lastNode = findLastNode(&head);
+        pnode lastNode = findLastNode(head);
         lastNode->next = theNode;
         theNode->node_num = nameOfNode;
         theNode->next = 0;
@@ -103,7 +103,7 @@ void delete_node_cmd(pnode *head)
 }
  pnode findLastNode(pnode *head)
  {
-    pnode curr = head;
+    pnode curr = *head;
     while (curr->next != 0)
     {
         curr = curr->next;
