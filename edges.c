@@ -1,9 +1,8 @@
 #include "graph.h"
 
-void addEdge(pnode head, pnode newEdgeNode)
+void addEdge(pnode *head, pnode newEdgeNode)
 {
     int toWhichNode, weightOfEdge;
-    pnode *phead = head;
 
     while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0 && !(isalpha(toWhichNode) && isalpha(weightOfEdge)))
     {
@@ -16,7 +15,7 @@ void addEdge(pnode head, pnode newEdgeNode)
             }
             newEdgeNode->edges->next = 0;
             newEdgeNode->edges->weight = weightOfEdge;
-            newEdgeNode->edges->endpoint = findNode(phead, toWhichNode);
+            newEdgeNode->edges->endpoint = findNode(head, toWhichNode);
         }
         else
         {
@@ -29,7 +28,7 @@ void addEdge(pnode head, pnode newEdgeNode)
             }
             newEdges = newEdges->next;
             newEdges->weight = weightOfEdge;
-            newEdges->endpoint = findNode(phead, toWhichNode);
+            newEdges->endpoint = findNode(head, toWhichNode);
             newEdges->next = NULL;
         }
     }
@@ -37,9 +36,7 @@ void addEdge(pnode head, pnode newEdgeNode)
 
 pedge lastEdge(pedge edge)
 {   
-    pedge before;
-
-    while (edge != 0)
+    while (edge->next != 0)
     {
         edge = edge->next;
     }

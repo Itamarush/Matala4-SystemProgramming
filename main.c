@@ -2,16 +2,14 @@
 void insert_new_node_cmd(pnode *head);
 int main()
 {
-    // pnode temp = NULL;
     pnode head = 0;
-    char c, newChar;
+    char choise, newChar, c;
     int stay = 1;
 
-    while (EOF != c && stay == 1)
+    while (EOF != scanf("%c", &choise))
     {
-        c = getchar();
-
-        if (c == 'A')
+        scanf("%c", &c);
+        if (choise == 'A')
         {
             deleteGraph_cmd(&head);
             build_graph_cmd(&head);
@@ -28,35 +26,32 @@ int main()
                     break;
                 } 
             }
-           
+            choise = newChar;
         }
-        else if (c == 'B')
+        if (choise == 'B')
         {
             insert_new_node_cmd(&head);
         }
-        else if (c == 'D')
+        if (choise == 'D')
         {
             delete_node_cmd(&head);
         }
-        else if (c == 'S')
+        if (choise == 'S')
         {
-            printf("aa");
-            // shortest path
-            shortsPath_cmd(head);
+            shortsPath_cmd(&head);
         }
-        else if (c == 'T')
+        if (choise == 'T')
         {
-            // travelling salesman problem
-            TSP_cmd(head);
+            TSP_cmd(&head);
         }
 
-        else if (c != ' ')
+        if (choise != ' ')
         {
             stay = 0;
             break;
         }
     }
 
-    deleteGraph_cmd(&head); // free memory
+    deleteGraph_cmd(&head);
     return 0;
 };

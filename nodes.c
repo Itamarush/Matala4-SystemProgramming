@@ -6,7 +6,7 @@ void insert_new_node_cmd(pnode *head)
     int nameOfNode, toWhichNode, weightOfEdge; 
     pnode theNode = 0;
     scanf("%d", &nameOfNode);
-    theNode = findNode(*head, nameOfNode);
+    theNode = findNode(head, nameOfNode);
 
     if(theNode == 0)
     {
@@ -29,7 +29,7 @@ void insert_node_cmd(pnode *head)
  
     scanf("%d", &nameOfNode);
     theNode = findNode(head, nameOfNode);
-    addEdge(*head, theNode);
+    addEdge(head, theNode);
 }
 
 pnode findNode(pnode *head, int nameOfNode)

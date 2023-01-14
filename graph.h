@@ -31,15 +31,17 @@ void insert_node_cmd(pnode *head);
 void delete_node_cmd(pnode *head);
 void printGraph_cmd(pnode head); //for self debug
 void deleteGraph_cmd(pnode* head);
-void shortsPath_cmd(pnode head);
-void TSP_cmd(pnode head);
-void addEdge(pnode head, pnode newEdgeNode);
+void shortsPath_cmd(pnode *head);
+void TSP_cmd(pnode *head);
+void addEdge(pnode *head, pnode newEdgeNode);
 pedge lastEdge(pedge edge);
 void insert_new_node_cmd(pnode *head);
 pnode findNode(pnode *head, int nameOfNode);
 pnode findNodeBefore(pnode head, int nameOfNode);
 void freeAllEdges(pnode tmpNode);
-void dijkstra(pnode start, pnode head);
+int dijkstra(pnode *head, pnode start, pnode end);
 pnode minNodeData(pnode curr);
+void permutation(pnode *head, int *arr, int start, int end);
+void swap(int *arr, int x, int y);
 
 #endif
