@@ -3,7 +3,7 @@ void insert_new_node_cmd(pnode *head);
 int main()
 {
     pnode head = 0;
-    char choise, newChar, c;
+    char choise, newChar;
 
     while (EOF != scanf("%c", &choise))
     {

@@ -1,38 +1,38 @@
-# edges.o: edges.c
+# edges.o: edges.c graph.h
 # 	gcc -c edges.o edges.c 
 
-# algo.o: algo.c
+# algo.o: algo.c graph.h
 # 	gcc -c algo.o algo.c 
 
-# nodes.o: nodes.c
+# nodes.o: nodes.c graph.h
 # 	gcc -c nodes.o nodes.c 
 
-# graph.o: graph.c
+# graph.o: graph.c graph.h
 # 	gcc -c graph.o graph.c 
 
-# main.o: main.c
+# main.o: main.c graph.h
 # 	gcc -c main.o main.c 
 
-# graphk: main.o graph.o nodes.o algo.o edges.o
-# 	gcc -o graph main.o graph.o graph.h nodes.o algo.c edges.c
+# graph: main.o graph.o nodes.o algo.o edges.o
+# 	gcc -Wall -g -o graph main.o graph.o graph.h nodes.o algo.o edges.o
 
-# all: graphk
+# all: graph
 
-# # CC = gcc
-# # CFLAGS = -Wall -g -fPIC
+# CC = gcc
+# CFLAGS = -Wall -g -fPIC
 
-# # all: graph
+# all: graph
 
-# # graph: main.o graph.o algo.o
-# # 	$(CC) $(CFLAGS) $^ -o $@
+# graph: main.o graph.o algo.o
+# 	$(CC) $(CFLAGS) $^ -o $@
 
-# # #------- o files-------
-# # %.o:%.c
-# # 	$(CC) $(CFLAGS) -c $^ -o $@	
-# # #------------------------------
+# #------- o files-------
+# %.o:%.c
+# 	$(CC) $(CFLAGS) -c $^ -o $@	
+# #------------------------------
 
-# # clean:
-# # 	rm  *.o graph
+# clean:
+# 	rm  *.o graph
 
 CC=gcc
 OBJ=nodes.o edges.o algo.o graph.o main.o graph.h

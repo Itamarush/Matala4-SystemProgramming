@@ -2,8 +2,7 @@
 
 void insert_new_node_cmd(pnode *head)
 {
-    int stay = 1;
-    int nameOfNode, toWhichNode, weightOfEdge; 
+    int nameOfNode; 
     pnode theNode = 0;
     scanf("%d", &nameOfNode);
     theNode = findNode(head, nameOfNode);
@@ -28,8 +27,7 @@ void insert_new_node_cmd(pnode *head)
 
 void insert_node_cmd(pnode *head)
 {
-    int stay = 1;
-    int nameOfNode, toWhichNode, weightOfEdge; 
+    int nameOfNode; 
     pnode theNode = 0;
  
     scanf("%d", &nameOfNode);
@@ -59,7 +57,7 @@ pnode findNodeBefore(pnode head, int nameOfNode)
     
     while (curr != 0)
     {      
-        if (curr->node_num = nameOfNode)
+        if (curr->node_num == nameOfNode)
         {
             return before;
         }
