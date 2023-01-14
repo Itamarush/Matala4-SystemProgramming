@@ -42,6 +42,6 @@ void freeAllEdges(pnode tmpNode);
 int dijkstra(pnode *head, pnode start, pnode end);
 pnode minNodeData(pnode curr);
 void permutation(pnode *head, int *arr, int start, int end);
-void swap(int *arr, int x, int y);
+void swap(int *x, int *y);
 
 #endif

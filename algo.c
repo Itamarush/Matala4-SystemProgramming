@@ -2,16 +2,19 @@
 
 void shortsPath_cmd(pnode *head)
 {
-    int src, dest = -1;
+    int src, dest, answer = -1;
     scanf("%d %d", &src, &dest);
 
     pnode start = findNode(head, src);
     pnode end = findNode(head, dest);
+
     if (start != 0 && end != 0)
     {
-        dijkstra(&(*head), &(*start), &(*end));
+        answer = dijkstra(&(*head), &(*start), &(*end));
     }
-    
+
+    printf("Dijsktra shortest path: %d ", answer);
+
 }
 
 int dijkstra(pnode *head, pnode start, pnode end)
@@ -44,7 +47,6 @@ int dijkstra(pnode *head, pnode start, pnode end)
         curr->Visited = 1;
         curr = minNodeData(curr);
     }
-    printf("Dijsktra shortest path: %d ", end->data);
     return end->data;
 }
 
@@ -76,20 +78,18 @@ void TSP_cmd(pnode *head)
     permutation(&(*head), arr, 0, length-1);
 }
 
-void swap(int* arr, int x, int y)
+void swap(int *x, int *y)
 {
-    int temp = arr[x];
-    arr[x] = arr[y];
-    arr[y] = temp;
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 void permutation(pnode *head, int *arr, int start, int end)
 {
     if (start == end)
     {
-        int x = arr[0];
-        int y = arr[1];
-        int z = arr[2];
+        printf("%d%d%d\n",arr[0],arr[1],arr[2]);
         tspUsingDijkstra(&(*head), arr, end);
         return;
     }
@@ -107,7 +107,7 @@ int tspUsingDijkstra(pnode *head, int *arr, int length)
     int shortestRoute = INF;
     int temp = 0;
 
-    for (size_t i = 0; i < length-1; i++)
+    for (size_t i = 0; i < length; i++)
     {
         pnode start = findNode(head, arr[i]);
         pnode end = findNode(head, arr[i+1]);
@@ -119,7 +119,7 @@ int tspUsingDijkstra(pnode *head, int *arr, int length)
         shortestRoute = temp;
     }
     
-    printf("%d", shortestRoute);
+    printf("the shortest route is: %d\n", shortestRoute);
     return shortestRoute;
 }
 
