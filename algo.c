@@ -1,4 +1,5 @@
 #include "graph.h"
+int min = INF;
 
 void shortsPath_cmd(pnode *head)
 {
@@ -14,10 +15,10 @@ void shortsPath_cmd(pnode *head)
     }
     if (answer == INF)
     {
-        printf("Dijsktra shortest path: -1 ");
+        printf("Dijsktra shortest path: -1 \n");
         return;
     }
-    printf("Dijsktra shortest path: %d ", answer);
+    printf("Dijsktra shortest path: %d \n", answer);
 
 }
 
@@ -80,7 +81,7 @@ void TSP_cmd(pnode *head)
         scanf("%d", &arr[i]);
     }
     permutation(&(*head), arr, 0, length-1);
-    printf("ok");
+    printf("TSP shortest path: %d \n", min);
 }
 
 void swap(int *x, int *y)
@@ -92,10 +93,15 @@ void swap(int *x, int *y)
 
 void permutation(pnode *head, int *arr, int start, int end)
 {
+    int value = 0;
     if (start == end)
     {
-        printf("%d%d%d\n",arr[0],arr[1],arr[2]);
-        tspUsingDijkstra(&(*head), arr, end);
+        // printf("%d%d%d\n",arr[0],arr[1],[arr2]);
+        value = tspUsingDijkstra(&(*head), arr, end);
+        if (min > value)
+        {
+            min = value;
+        }
         return;
     }
 
@@ -124,7 +130,7 @@ int tspUsingDijkstra(pnode *head, int *arr, int length)
         shortestRoute = temp;
     }
     
-    printf("the shortest route is: %d\n", shortestRoute);
+    // printf("the shortest route is: %d\n", shortestRoute);
     return shortestRoute;
 }
 

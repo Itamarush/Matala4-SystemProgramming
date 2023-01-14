@@ -11,6 +11,10 @@ void insert_new_node_cmd(pnode *head)
     if(theNode == 0)
     {
         theNode = (pnode)malloc(sizeof(node));
+        pnode lastNode = findLastNode(&head);
+        lastNode->next = theNode;
+        theNode->node_num = nameOfNode;
+        theNode->next = 0;
         addEdge(head, theNode);
     }
 
@@ -86,7 +90,7 @@ void delete_node_cmd(pnode *head)
         
         while (currEdge != 0)
         {
-            if (currEdge->endpoint = needToBeDeleted)
+            if (currEdge->endpoint == needToBeDeleted)
             {
                 tempEdge = currEdge;
                 currEdge = currEdge->next;
@@ -97,3 +101,12 @@ void delete_node_cmd(pnode *head)
         free(needToBeDeleted);   
     }   
 }
+ pnode findLastNode(pnode *head)
+ {
+    pnode curr = head;
+    while (curr->next != 0)
+    {
+        curr = curr->next;
+    }
+    return curr;
+ }

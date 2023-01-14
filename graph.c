@@ -7,7 +7,6 @@ void build_graph_cmd(pnode *header)
 
     int amountOfNodes;
     scanf("%d", &amountOfNodes);
-    int counter = 0;
 
         head = (pnode)malloc(sizeof(node));
         if (head == 0)

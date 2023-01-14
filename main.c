@@ -4,16 +4,14 @@ int main()
 {
     pnode head = 0;
     char choise, newChar, c;
-    int stay = 1;
 
     while (EOF != scanf("%c", &choise))
     {
-        scanf("%c", &c);
         if (choise == 'A')
         {
             deleteGraph_cmd(&head);
             build_graph_cmd(&head);
-            scanf("%c", &c);
+            scanf("%c", &newChar);
 
             while (scanf("%c", &newChar) != 0)
             {               
@@ -43,11 +41,6 @@ int main()
         if (choise == 'T')
         {
             TSP_cmd(&head);
-            printf("ok!!");
-        }
-        if (choise == ' ')
-        {
-            break;
         }
         
     }

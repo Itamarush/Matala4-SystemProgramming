@@ -43,5 +43,9 @@ int dijkstra(pnode *head, pnode start, pnode end);
 pnode minNodeData(pnode curr);
 void permutation(pnode *head, int *arr, int start, int end);
 void swap(int *x, int *y);
+int tspUsingDijkstra(pnode *head, int *arr, int length);
+pnode findLastNode(pnode *head);
+
+
 
 #endif
