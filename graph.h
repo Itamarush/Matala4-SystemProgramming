@@ -51,7 +51,9 @@ pedge find_edge_to(pedge head, pnode endpoint);
 pedge find_edge_before(pedge head, pnode endpoint);
 pnode find_node(pnode head, int node_num);
 pnode find_node_before(pnode head, int node_num);
-
+void free_node(pnode *head, pnode node);
+pnode getNode(int id, pnode *head);
+void free_edges1(pnode tmpNode);
 
 
 

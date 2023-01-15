@@ -3,19 +3,19 @@
 void addEdge(pnode *head, pnode newEdgeNode)
 {
     int toWhichNode, weightOfEdge;
-
+    pnode newEdgeNode1 = newEdgeNode;
     while (scanf("%d", &toWhichNode) != 0 && scanf("%d", &weightOfEdge) != 0 && !(isalpha(toWhichNode) && isalpha(weightOfEdge)))
     {
-        if (newEdgeNode->edges == 0)
+        if (newEdgeNode1->edges == 0)
         {
-            newEdgeNode->edges = (pedge)malloc(sizeof(edge));
+            newEdgeNode1->edges = (pedge)malloc(sizeof(edge));
             if (newEdgeNode->edges == 0)
             {
                 printf("error while trying to malloc"); 
             }
-            newEdgeNode->edges->next = 0;
-            newEdgeNode->edges->weight = weightOfEdge;
-            newEdgeNode->edges->endpoint = findNode(head, toWhichNode);
+            newEdgeNode1->edges->next = 0;
+            newEdgeNode1->edges->weight = weightOfEdge;
+            newEdgeNode1->edges->endpoint = findNode(head, toWhichNode);
         }
         else
         {

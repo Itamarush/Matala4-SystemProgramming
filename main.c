@@ -1,8 +1,8 @@
 #include "graph.h"
 void insert_new_node_cmd(pnode *head);
 int main()
-{
-    pnode head = 0;
+{   
+    pnode head = NULL;
     char choise, newChar;
 
     while (EOF != scanf("%c", &choise))
