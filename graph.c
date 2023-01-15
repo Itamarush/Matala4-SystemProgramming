@@ -39,25 +39,42 @@ void build_graph_cmd(pnode *header)
     // *header = &head;
 }
 
-void deleteGraph_cmd(pnode* head)
-{
-    pnode currNode = *head;
-    pnode tempNode;
-    pedge currEdges;
-    pedge tempEdges;
+// void deleteGraph_cmd(pnode* head)
+// {
+//     pnode currNode = *head;
+//     pnode tempNode;
+//     pedge currEdges;
+//     pedge tempEdges;
 
-    while (currNode != NULL )
+//     while (currNode != NULL )
+//     {
+//         currEdges = currNode->edges;
+//         while (currEdges != NULL)
+//         {
+//             tempEdges = currEdges;
+//             currEdges = currEdges->next;
+//             free(tempEdges);
+//         }
+//         tempNode = currNode;
+//         currNode = currNode->next;
+//         free(tempNode);
+//     }
+// }
+
+void deleteGraph_cmd(pnode *head){
+    pnode tempNode = *head;
+    while (tempNode != NULL)
     {
-        currEdges = currNode->edges;
-        while (currEdges != NULL)
+        pedge tempEdge = tempNode->edges;
+        while (tempEdge != NULL)
         {
-            tempEdges = currEdges;
-            currEdges = currEdges->next;
-            free(tempEdges);
+            pedge tempEdgefree = tempEdge;
+            tempEdge = tempEdge->next;
+            free(tempEdgefree);
         }
-        tempNode = currNode;
-        currNode = currNode->next;
-        free(tempNode);
+        node *tempFree = tempNode;
+        tempNode = tempNode->next;
+        free(tempFree);
     }
+    free(tempNode);
 }
-
