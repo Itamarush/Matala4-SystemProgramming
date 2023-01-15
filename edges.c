@@ -31,8 +31,28 @@ void addEdge(pnode *head, pnode newEdgeNode)
             newEdges->endpoint = findNode(head, toWhichNode);
             newEdges->next = NULL;
         }
+
+        
     }
 }
+
+pedge find_edge_before(pedge head, pnode endpoint)
+{
+    if (head == NULL) // empty list
+    {
+        return NULL;
+    }
+    pedge temp = head;
+    while (temp->next != NULL)
+    {
+        if (temp->next->endpoint == endpoint)
+        {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    return NULL;
+};
 
 pedge lastEdge(pedge edge)
 {   

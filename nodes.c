@@ -67,37 +67,6 @@ pnode findNodeBefore(pnode *head, int nameOfNode)
     return NULL; 
 }
 
-void delete_node_cmd(pnode *head)
-{
-    int nameOfNode;
-    scanf("%d", &nameOfNode);
-
-    pnode curr = *head;
-    pnode needToBeDeleted = findNode(head, nameOfNode);
-    pnode oneBefore = findNodeBefore(head, nameOfNode);
-    pedge currEdge = curr->edges;
-    pedge tempEdge = 0;
-
-    while (curr != 0)
-    {
-        if (curr == needToBeDeleted)
-        {
-            curr= curr->next;
-        }
-        
-        while (currEdge->next != 0)
-        {
-            if (currEdge->endpoint == needToBeDeleted)
-            {
-                tempEdge = currEdge;
-                free(tempEdge);
-            }
-            currEdge = currEdge->next;
-        }
-        oneBefore->next = needToBeDeleted->next;
-        free(needToBeDeleted);   
-    }   
-}
  pnode findLastNode(pnode *head)
  {
     pnode curr = *head;
@@ -107,3 +76,52 @@ void delete_node_cmd(pnode *head)
     }
     return curr;
  }
+
+void delete_node_cmd(pnode *head)
+{
+    int nameOfNode;
+    scanf("%d", &nameOfNode);
+
+    pnode curr = *head;
+    pnode needToBeDeleted = findNode(head, nameOfNode);
+    pnode oneBefore = findNodeBefore(head, nameOfNode);
+    pedge currEdge = curr->edges;
+    pedge tempEdge;
+
+    while (curr != NULL)
+    {
+        //update edges list
+        if (curr->node_num == nameOfNode) {
+            if (curr->edges != NULL) {
+                tempEdge = curr->edges;
+                while (tempEdge != NULL) {
+                    pedge temp = tempEdge;
+                    tempEdge = tempEdge->next;
+                    free(temp);
+                }
+            }
+            // update oneBefore->next
+            oneBefore->next = needToBeDeleted->next;
+            free(needToBeDeleted);
+            break;
+        }
+        else {
+            currEdge = curr->edges;
+            while (currEdge != NULL)
+            {
+                if (currEdge->endpoint->node_num == nameOfNode)
+                {
+                    tempEdge = currEdge;
+                    currEdge = currEdge->next;
+                    if (tempEdge == curr->edges) {
+                        curr->edges = currEdge;
+                    }
+                    free(tempEdge);
+                }
+                else
+                    currEdge = currEdge->next;
+            }
+        }
+        curr = curr->next;
+    }
+}
