@@ -29,7 +29,7 @@ typedef struct GRAPH_NODE_ {
 void build_graph_cmd(pnode *head);
 void insert_node_cmd(pnode *head);
 void delete_node_cmd(pnode *head);
-void printGraph_cmd(pnode head); //for self debug
+void printGraph_cmd(pnode head); 
 void deleteGraph_cmd(pnode* head);
 void shortsPath_cmd(pnode *head);
 void TSP_cmd(pnode *head);
@@ -52,8 +52,6 @@ pedge find_edge_before(pedge head, pnode endpoint);
 pnode find_node(pnode head, int node_num);
 pnode find_node_before(pnode head, int node_num);
 void free_node(pnode *head, pnode node);
-pnode getNode(int id, pnode *head);
-void free_edges1(pnode tmpNode);
 
 
 

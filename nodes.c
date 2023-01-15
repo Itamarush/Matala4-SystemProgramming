@@ -92,193 +92,49 @@ pnode findNodeBefore(pnode *head, int nameOfNode)
     return curr;
  }
 
-// void delete_node_cmd(pnode *head)
-// {
-//     int nameOfNode;
-//     scanf("%d", &nameOfNode);
-
-//     pnode curr = *head;
-//     pnode needToBeDeleted = findNode(head, nameOfNode);
-//     pnode oneBefore = findNodeBefore(head, nameOfNode);
-//     pedge currEdge = curr->edges;
-//     pedge tempEdge;
-
-//     while (curr != NULL)
-//     {
-//         //update edges list
-//         if (curr->node_num == nameOfNode) {
-//             if (curr->edges != NULL) {
-//                 tempEdge = curr->edges;
-//                 while (tempEdge != NULL) {
-//                     pedge temp = tempEdge;
-//                     tempEdge = tempEdge->next;
-//                     free(temp);
-//                 }
-//             }
-//             // update oneBefore->next
-//             oneBefore->next = needToBeDeleted->next;
-//             free(needToBeDeleted);
-//             break;
-//         }
-//         else {
-//             currEdge = curr->edges;
-//             while (currEdge != NULL)
-//             {
-//                 if (currEdge->endpoint->node_num == nameOfNode)
-//                 {
-//                     tempEdge = currEdge;
-//                     currEdge = currEdge->next;
-//                     if (tempEdge == curr->edges) {
-//                         curr->edges = currEdge;
-//                     }
-//                     free(tempEdge);
-//                 }
-//                 else
-//                     currEdge = currEdge->next;
-//             }
-//         }
-//         curr = curr->next;
-//     }
-// }
-
-
-
 void delete_node_cmd(pnode *head)
 {
-    int node_num;
-    scanf("%d", &node_num); // get node number to delete
+    int nameOfNode;
+    scanf("%d", &nameOfNode);
 
-    pnode node = find_node(*head, node_num);
-    if (node == NULL) // node does not exist
-    {
-        printf("0.Error: node %d does not exist\n", node_num);
-        exit(1);
-    }
-    free_node(head, node); // delete node
-};
+    pnode curr = *head;
+    pnode needToBeDeleted = findNode(head, nameOfNode);
+    pnode oneBefore = findNodeBefore(head, nameOfNode);
+    pedge currEdge = curr->edges;
+    pedge tempEdge;
 
-void free_node(pnode *head, pnode node)
-{
-    if (node == *head) // node is head
+    while (curr != NULL)
     {
-        *head = node->next;
-    }
-    else // node is not head
-    {
-        pnode before = find_node_before(*head, node->node_num);
-        before->next = node->next;
-    }
-    disconnect_node(*head, node); // find nodes with edges to node and disconnect them
-    free_edges(node->edges);
-    free(node);
-};
-
-void disconnect_node(pnode head, pnode nodeToDisconnect)
-{
-    pnode temp = head;
-    while (temp != NULL) // look for nodes with edges to node_num
-    {
-        if (temp->edges != NULL)
-        {
-            pedge edge = find_edge_to(temp->edges, nodeToDisconnect);
-            if (edge != NULL) // node has edge to nodeToDisconnect
+        if (curr->node_num == nameOfNode) {
+            if (curr->edges != NULL) {
+                tempEdge = curr->edges;
+                while (tempEdge != NULL) {
+                    pedge temp = tempEdge;
+                    tempEdge = tempEdge->next;
+                    free(temp);
+                }
+            }
+            oneBefore->next = needToBeDeleted->next;
+            free(needToBeDeleted);
+            break;
+        }
+        else {
+            currEdge = curr->edges;
+            while (currEdge != NULL)
             {
-                if (edge == temp->edges) // edge is head
+                if (currEdge->endpoint->node_num == nameOfNode)
                 {
-                    temp->edges = edge->next;
+                    tempEdge = currEdge;
+                    currEdge = currEdge->next;
+                    if (tempEdge == curr->edges) {
+                        curr->edges = currEdge;
+                    }
+                    free(tempEdge);
                 }
-                else // edge is not head
-                {
-                    pedge before = find_edge_before(temp->edges, edge->endpoint);
-                    before->next = edge->next;
-                }
-                free(edge);
+                else
+                    currEdge = currEdge->next;
             }
         }
-        temp = temp->next;
+        curr = curr->next;
     }
-};
-
-void free_edges(pedge head)
-{
-    if (head == NULL) // empty list
-    {
-        return;
-    }
-    pedge temp = head;
-    while (temp->next != NULL) // go over all edges in list
-    {
-        pedge temp2 = temp;
-        temp = temp->next;
-        free(temp2);
-    }
-    free(temp);
-};
-
-pedge find_edge_before(pedge head, pnode endpoint)
-{
-    if (head == NULL) // empty list
-    {
-        return NULL;
-    }
-    pedge temp = head;
-    while (temp->next != NULL)
-    {
-        if (temp->next->endpoint == endpoint)
-        {
-            return temp;
-        }
-        temp = temp->next;
-    }
-    return NULL;
-};
-
-pedge find_edge_to(pedge head, pnode endpoint)
-{
-    if (head == NULL) // empty list
-    {
-        return NULL;
-    }
-    if (head->endpoint == endpoint) // edge is head
-    {
-        return head;
-    }
-    pedge before = find_edge_before(head, endpoint); // edge is not head
-    return before != NULL ? before->next : NULL;     // edge found
-};
-
-pnode find_node(pnode head, int node_num)
-{
-    if (head == NULL)
-    { // empty list
-        return NULL;
-    }
-    if (head->node_num == node_num) // node is head
-    {
-        return head;
-    }
-    pnode before = find_node_before(head, node_num); // node is not head
-    if (before == NULL)                              // node not found
-    {
-        return NULL;
-    }
-    return before->next; // node found
-};
-
-pnode find_node_before(pnode head, int node_num)
-{
-    if (head == NULL)
-    { // empty list
-        return NULL;
-    }
-    pnode temp = head;
-    while (temp->next != NULL)
-    {
-        if (temp->next->node_num == node_num)
-        {
-            return temp;
-        }
-        temp = temp->next;
-    }
-    return NULL;
-};
+}
