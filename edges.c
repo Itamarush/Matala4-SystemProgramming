@@ -11,7 +11,8 @@ void addEdge(pnode *head, pnode newEdgeNode)
             newEdgeNode1->edges = (pedge)malloc(sizeof(edge));
             if (newEdgeNode->edges == 0)
             {
-                printf("error while trying to malloc"); 
+                printf("error while trying to malloc");
+                exit(0);
             }
             newEdgeNode1->edges->next = 0;
             newEdgeNode1->edges->weight = weightOfEdge;
@@ -25,6 +26,7 @@ void addEdge(pnode *head, pnode newEdgeNode)
             if (newEdges->next == 0)
             {
                 printf("error while trying to malloc"); 
+                exit(0);
             }
             newEdges = newEdges->next;
             newEdges->weight = weightOfEdge;
