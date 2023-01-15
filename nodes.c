@@ -37,6 +37,11 @@ void insert_node_cmd(pnode *head)
 
 pnode findNode(pnode *head, int nameOfNode)
 {
+    if (head == NULL)
+    { 
+        return NULL;
+    }
+
     pnode curr = *head;
     
     while (curr != 0)
@@ -52,6 +57,11 @@ pnode findNode(pnode *head, int nameOfNode)
 
 pnode findNodeBefore(pnode *head, int nameOfNode)
 {
+    if (head == NULL)
+    {       
+        return NULL;
+    }
+
     pnode curr = *head;
     pnode before = curr;
     
@@ -133,7 +143,7 @@ void delete_node_cmd(pnode *head)
     int node_num;
     scanf("%d", &node_num); // get node number to delete
 
-    pnode node = findNode(*head, node_num);
+    pnode node = find_node(*head, node_num);
     if (node == NULL) // node does not exist
     {
         printf("0.Error: node %d does not exist\n", node_num);
@@ -150,7 +160,7 @@ void free_node(pnode *head, pnode node)
     }
     else // node is not head
     {
-        pnode before = findNodeBefore(*head, node->node_num);
+        pnode before = find_node_before(*head, node->node_num);
         before->next = node->next;
     }
     disconnect_node(*head, node); // find nodes with edges to node and disconnect them
@@ -232,3 +242,38 @@ pedge find_edge_to(pedge head, pnode endpoint)
     return before != NULL ? before->next : NULL;     // edge found
 };
 
+pnode find_node(pnode head, int node_num)
+{
+    if (head == NULL)
+    { // empty list
+        return NULL;
+    }
+    if (head->node_num == node_num) // node is head
+    {
+        return head;
+    }
+    pnode before = find_node_before(head, node_num); // node is not head
+    if (before == NULL)                              // node not found
+    {
+        return NULL;
+    }
+    return before->next; // node found
+};
+
+pnode find_node_before(pnode head, int node_num)
+{
+    if (head == NULL)
+    { // empty list
+        return NULL;
+    }
+    pnode temp = head;
+    while (temp->next != NULL)
+    {
+        if (temp->next->node_num == node_num)
+        {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    return NULL;
+};

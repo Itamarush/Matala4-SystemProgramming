@@ -46,6 +46,5 @@ int main()
     }
 
     deleteGraph_cmd(&head);
-    free(choise);
     return 0;
 };

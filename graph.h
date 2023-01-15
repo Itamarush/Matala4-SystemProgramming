@@ -49,6 +49,8 @@ void free_edges(pedge head);
 void disconnect_node(pnode head, pnode nodeToDisconnect);
 pedge find_edge_to(pedge head, pnode endpoint);
 pedge find_edge_before(pedge head, pnode endpoint);
+pnode find_node(pnode head, int node_num);
+pnode find_node_before(pnode head, int node_num);
 
 
 
