@@ -118,7 +118,8 @@ void delete_node_cmd(pnode *head)
             free(needToBeDeleted);
             break;
         }
-        else {
+        else
+        {
             currEdge = curr->edges;
             while (currEdge != NULL)
             {
@@ -126,7 +127,8 @@ void delete_node_cmd(pnode *head)
                 {
                     tempEdge = currEdge;
                     currEdge = currEdge->next;
-                    if (tempEdge == curr->edges) {
+                    if (tempEdge == curr->edges)
+                    {
                         curr->edges = currEdge;
                     }
                     free(tempEdge);
